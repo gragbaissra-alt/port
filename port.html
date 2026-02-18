@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Cards</title>
+<style>
+  .pricing {
+    width: 300px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px #df2020; /* fixed typo */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .price {
+    font-size: 18px;
+    color: green;
+    margin: 10px 0;
+  }
+
+  .features {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .features li {
+    padding: 4px;
+    border-bottom: 1px solid #eeeeee23;
+  }
+
+  .btn {
+    background: rgb(107, 107, 166);
+    color: rgb(183, 31, 31);
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+
+  .btn:hover {
+    background: darkblue;
+  }
+
+  /* Container for multiple cards */
+  .pricing-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="pricing-container" id="pricing-container"></div>
+
+<script>
+  // Reusable Card function
+  function Card(title, price, features) {
+    const card = document.createElement('div');
+    card.className = 'pricing';
+
+    card.innerHTML = `
+      <h2 class="title">${title}</h2>
+      <p class="price">${price}</p>
+      <ul class="features">
+        ${features.map(f => `<li>${f}</li>`).join('')}
+      </ul>
+      <button class="btn">Start Trial</button>
+    `;
+
+    return card;
+  }
+
+  const container = document.getElementById('pricing-container');
+
+  // Example cards
+  const plans = [
+    {title: 'Basic Plan', price: '$9.99 /month', features: ['1 GB Storage', 'Basic Support', 'All Core Features']},
+    {title: 'Pro Plan', price: '$19.99 /month', features: ['10 GB Storage', 'Priority Support', 'Advanced Features']},
+    {title: 'Enterprise Plan', price: '$49.99 /month', features: ['100 GB Storage', '24/7 Support', 'All Features']}
+  ];
+
+  plans.forEach(plan => {
+    container.appendChild(Card(plan.title, plan.price, plan.features));
+  });
+</script>
+
+</body>
+</html>
